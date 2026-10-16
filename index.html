@@ -22,39 +22,64 @@ h1{font-size:14px;font-weight:600;color:var(--mut);letter-spacing:.08em;text-tra
 .since{text-align:center;margin:8px 0 20px}
 .since small{display:block;color:var(--mut);font-size:13px;margin-bottom:6px}
 .since b{font:600 44px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.02em}
-#btn{width:100%;height:120px;border:0;border-radius:28px;background:var(--ac);color:#fff;font-size:30px;font-weight:700;letter-spacing:.01em}
+#gapbox{font-size:14px;font-weight:600;margin-top:8px}
+#btn{width:100%;height:120px;border:0;border-radius:28px;background:var(--ac);color:#fff;font-size:30px;font-weight:700}
 #btn:active{transform:scale(.98);filter:brightness(.9)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:14px}
-.row{display:flex;justify-content:space-between;align-items:baseline}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .row span{color:var(--mut);font-size:14px}.row b{font-size:20px}
 .bar{height:8px;background:var(--line);border-radius:8px;margin-top:12px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;border-radius:8px;background:var(--ok);transition:width .3s,background .3s}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .chip{background:var(--bg);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:8px 12px;font:500 15px ui-monospace,Menlo,monospace}
-.tabs{display:flex;gap:6px;margin:22px 0 0;background:var(--card);padding:4px;border-radius:14px;border:1px solid var(--line)}
-.tabs button{flex:1;border:0;background:none;color:var(--mut);padding:10px;border-radius:10px;font-size:14px;font-weight:600}
+.tabs{display:flex;gap:4px;margin:22px 0 0;background:var(--card);padding:4px;border-radius:14px;border:1px solid var(--line)}
+.tabs button{flex:1;border:0;background:none;color:var(--mut);padding:10px 2px;border-radius:10px;font-size:12.5px;font-weight:600}
 .tabs button.on{background:var(--line);color:var(--tx)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.grid .card{margin:0}.grid .card span{color:var(--mut);font-size:12px;display:block}.grid .card b{font-size:22px;display:block;margin-top:4px}
+.grid .card{margin:0}.grid .card span{color:var(--mut);font-size:12px;display:block}.grid .card b{font-size:21px;display:block;margin-top:4px}
 .days{display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:12px}
 .days div{flex:1;text-align:center;font-size:11px;color:var(--mut)}
 .days i{display:block;background:var(--ac);border-radius:6px 6px 2px 2px;margin-bottom:4px;min-height:2px;opacity:.85}
 label{display:block;color:var(--mut);font-size:13px;margin:14px 0 6px}
-input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:12px;font-size:16px}
+label:first-child{margin-top:0}
+input,select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:12px;font-size:16px;font-family:inherit}
+input[type=checkbox]{width:24px;height:24px;padding:0;accent-color:var(--ac);flex:none}
+.tog{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0}
+.tog span{font-size:15px}
 .btn2{width:100%;margin-top:12px;background:var(--line);color:var(--tx);border:0;border-radius:12px;padding:13px;font-size:15px;font-weight:600}
 .hint{color:var(--mut);font-size:12px;margin-top:10px;line-height:1.5}
-.hidden{display:none}
+.hidden{display:none!important}
 #st{font-size:11px;color:var(--mut);text-transform:none;letter-spacing:0}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.nav b{font-size:16px;text-transform:capitalize}
+.nb{background:var(--line);border:0;color:var(--tx);width:40px;height:36px;border-radius:10px;font-size:18px}
+.seg{display:flex;gap:4px;background:var(--bg);padding:3px;border-radius:10px;margin-top:12px}
+.seg button{flex:1;border:0;background:none;color:var(--mut);padding:8px;border-radius:8px;font-size:13px;font-weight:600}
+.seg button.on{background:var(--line);color:var(--tx)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:12px}
+.cal .h{font-size:11px;color:var(--mut);text-align:center}
+.cal button{aspect-ratio:1;border:1.5px solid transparent;border-radius:10px;background:none;color:var(--tx);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;gap:1px}
+.cal button small{font-size:10px;color:var(--mut)}.cal button b{font-size:15px;line-height:1.1;min-height:16px}
+.cal button.fut{opacity:.35}.cal button.td{border-color:var(--ac)}.cal button.sel{border-color:var(--tx)}
+.mrow{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;color:var(--tx);padding:9px 0;font-size:14px;text-align:left}
+.mrow em{font-style:normal;width:34px;color:var(--mut);text-transform:capitalize}
+.mrow i{display:block;height:10px;border-radius:6px;background:var(--ac);min-width:2px}
+.mrow span{margin-left:auto;color:var(--mut);font-size:12px;white-space:nowrap}
+.ph{display:flex;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.ph div{flex:1}.ph small{display:block;color:var(--mut);font-size:12px}
+.ph button{background:var(--line);border:0;color:var(--tx);border-radius:8px;padding:7px 10px;font-size:12px}
+.sub{margin-top:12px}
+.two{display:flex;gap:8px}.two input{flex:1}.two .btn2{width:auto;margin-top:0;padding:12px 16px}
 </style>
 </head>
 <body>
 <main>
 <h1><span>Fumei</span><span id="st"></span></h1>
 
-<section class="since"><small>Desde o último cigarro</small><b id="since">--</b></section>
+<section class="since"><small>Desde o último cigarro</small><b id="since">--</b><div id="gapbox" class="hidden"></div></section>
 <button id="btn">Fumei</button>
 
-<div class="tabs"><button data-t="hoje" class="on">Hoje</button><button data-t="stats">Estatísticas</button><button data-t="cfg">Definições</button></div>
+<div class="tabs"><button data-t="hoje" class="on">Hoje</button><button data-t="hist">Histórico</button><button data-t="stats">Estatísticas</button><button data-t="cfg">Definições</button></div>
 
 <section id="hoje">
   <div class="card">
@@ -66,14 +91,35 @@ input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--t
   <div class="card"><div class="row"><span>Custo hoje</span><b id="costDay">0,00 €</b></div></div>
 </section>
 
+<section id="hist" class="hidden">
+  <div class="card">
+    <div class="nav"><button class="nb" id="prev">‹</button><b id="hlabel"></b><button class="nb" id="next">›</button></div>
+    <div class="seg"><button id="vm">Mês</button><button id="vy">Ano</button></div>
+    <div id="hbody"></div>
+  </div>
+  <div class="grid" id="hsum"></div>
+  <div class="card hidden" id="detail">
+    <div class="row"><b id="dtitle" style="font-size:16px;text-transform:capitalize"></b><span id="dsum"></span></div>
+    <div class="chips" id="dchips"></div>
+    <div class="two" style="margin-top:14px"><input type="time" id="dtime"><button class="btn2" id="dadd">Adicionar</button></div>
+    <div class="hint">Toca numa hora para a apagar. Podes adicionar um cigarro esquecido a qualquer dia.</div>
+  </div>
+</section>
+
 <section id="stats" class="hidden">
   <div class="grid">
     <div class="card"><span>Média diária</span><b id="avgDay">-</b></div>
     <div class="card"><span>Tempo médio entre cigarros</span><b id="avgGap">-</b></div>
     <div class="card"><span>Total fumados</span><b id="total">0</b></div>
     <div class="card"><span>Custo total</span><b id="costAll">0,00 €</b></div>
-    <div class="card"><span>Custo por cigarro</span><b id="unit">-</b></div>
+    <div class="card"><span>Este mês</span><b id="mon">-</b></div>
+    <div class="card"><span>Este ano</span><b id="yr">-</b></div>
+    <div class="card"><span>Custo por cigarro (atual)</span><b id="unit">-</b></div>
     <div class="card"><span>Esta semana vs anterior</span><b id="wk">-</b></div>
+  </div>
+  <div class="grid hidden" id="f6box">
+    <div class="card"><span>Poupança desde o início</span><b id="sav">-</b></div>
+    <div class="card"><span>Dias seguidos dentro do objetivo</span><b id="streak">-</b></div>
   </div>
   <div class="card"><div class="row"><span>Últimos 7 dias</span></div><div class="days" id="days"></div></div>
 </section>
@@ -81,10 +127,28 @@ input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--t
 <section id="cfg" class="hidden">
   <div class="card">
     <label>Objetivo diário (cigarros)</label><input id="goal" type="number" min="0" inputmode="numeric">
+    <label>O dia começa às</label>
+    <select id="ds"><option value="0">00:00 (meia-noite)</option><option value="1">01:00</option><option value="2">02:00</option><option value="3">03:00</option><option value="4">04:00</option><option value="5">05:00</option><option value="6">06:00</option></select>
+    <div class="hint">Com 04:00, um cigarro às 00:30 conta ainda para o dia anterior.</div>
+  </div>
+
+  <div class="card">
     <label>Preço do maço (€)</label><input id="price" type="number" min="0" step="0.01" inputmode="decimal">
     <label>Cigarros por maço</label><input id="pack" type="number" min="1" inputmode="numeric">
-    <div class="hint">Se o preço mudar, o novo valor aplica-se a todos os registos (o custo é recalculado com o preço atual).</div>
+    <label>A partir de (vazio = a partir de agora)</label><input id="pfrom" type="date">
+    <button class="btn2" id="savePrice">Guardar preço</button>
+    <div class="hint">O preço novo só vale daí para a frente: os cigarros anteriores mantêm o preço antigo.</div>
+    <div id="plist" style="margin-top:12px"></div>
   </div>
+
+  <div class="card">
+    <div class="tog"><span>Intervalo mínimo entre cigarros</span><input type="checkbox" id="f4"></div>
+    <div class="sub hidden" id="f4s"><label>Minutos de espera</label><input id="gap" type="number" min="1" inputmode="numeric"></div>
+    <div class="tog" style="margin-top:18px"><span>Poupança e dias seguidos</span><input type="checkbox" id="f6"></div>
+    <div class="sub hidden" id="f6s"><label>Quantos fumavas por dia antes de reduzir</label><input id="base" type="number" min="1" inputmode="numeric">
+    <div class="hint">A poupança compara o que gastaste com o que gastarias a esse ritmo, nos dias já completos.</div></div>
+  </div>
+
   <div class="card">
     <label>Adicionar cigarro com outra hora</label><input id="when" type="datetime-local">
     <button class="btn2" id="addPast">Adicionar</button>
@@ -101,84 +165,188 @@ input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--t
 <script>
 const $=id=>document.getElementById(id);
 const KEY="fumei_v1";
-let S={e:[],goal:15,price:5.8,pack:20,u:0};
-
+const pad=n=>String(n).padStart(2,"0");
 const eur=n=>n.toLocaleString("pt-PT",{minimumFractionDigits:2,maximumFractionDigits:2})+" €";
-const p2=n=>String(n).padStart(2,"0");
-const hm=t=>{const d=new Date(t);return p2(d.getHours())+":"+p2(d.getMinutes())};
-const dayKey=t=>{const d=new Date(t);return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())};
-const sod=t=>{const d=new Date(t);d.setHours(0,0,0,0);return d.getTime()};
-const unit=()=>S.price/S.pack;
+const f1=n=>n.toFixed(1).replace(".",",");
+const hm=t=>{const d=new Date(t);return pad(d.getHours())+":"+pad(d.getMinutes())};
+let S={e:[],goal:15,prices:[{from:0,price:5.8,pack:20}],ds:0,f4:false,gap:45,f6:false,base:20,u:0};
+let IDX={},CAL={view:"m",y:0,m:0,sel:null};
+
+function adopt(r){
+ if(!r.prices&&r.price!=null)r.prices=[{from:0,price:+r.price,pack:+r.pack||20}];
+ delete r.price;delete r.pack;
+ Object.assign(S,r);
+ if(!Array.isArray(S.e))S.e=[];
+ if(!Array.isArray(S.prices)||!S.prices.length)S.prices=[{from:0,price:5.8,pack:20}];
+ S.prices.sort((a,b)=>a.from-b.from);
+}
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)adopt(r)}catch(e){}}
+function persist(){S.u=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S));$("st").textContent="guardado neste telemóvel"}catch(e){$("st").textContent="erro ao guardar"}}
+
+/* dias (com início do dia configurável) */
+const keyD=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const dk=t=>keyD(new Date(t-S.ds*36e5));
+const U=k=>{const[a,b,c]=k.split("-").map(Number);return Date.UTC(a,b-1,c)};
+const addD=(k,n)=>{const d=new Date(U(k)+n*864e5);return d.getUTCFullYear()+"-"+pad(d.getUTCMonth()+1)+"-"+pad(d.getUTCDate())};
+const diffD=(a,b)=>Math.round((U(b)-U(a))/864e5);
+const today=()=>dk(Date.now());
+function index(){const m={};for(const t of S.e){(m[dk(t)]||(m[dk(t)]=[])).push(t)}for(const k in m)m[k].sort((a,b)=>a-b);return m}
+
+/* preços com histórico */
+function unitAt(t){let p=S.prices[0];for(const x of S.prices){if(x.from<=t)p=x;else break}return p.price/p.pack}
+const cost=l=>l.reduce((a,t)=>a+unitAt(t),0);
+const curUnit=()=>unitAt(Date.now());
+function per(prefix){let n=0,c=0;for(const k in IDX)if(k.startsWith(prefix)){n+=IDX[k].length;c+=cost(IDX[k])}return[n,c]}
+
 function dur(ms){ms=Math.max(0,ms);const m=Math.floor(ms/60000),h=Math.floor(m/60),d=Math.floor(h/24);
- if(d>0)return d+"d "+(h%24)+"h";if(h>0)return h+"h "+p2(m%60)+"m";return m+" min"}
+ if(d>0)return d+"d "+(h%24)+"h";if(h>0)return h+"h "+pad(m%60)+"m";return m+" min"}
 
-function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)S=Object.assign(S,r)}catch(e){}}
-function persist(){S.u=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S));status("guardado neste telemóvel")}catch(e){status("erro ao guardar")}}
-function status(t){$("st").textContent=t}
-
-function stats(){
- const e=[...S.e].sort((a,b)=>a-b);const now=Date.now();
- const today=e.filter(t=>sod(t)===sod(now));
- const out={today};
- out.total=e.length;
- if(e.length){const days=Math.round((sod(now)-sod(e[0]))/864e5)+1;out.avgDay=e.length/days}
- const gaps=[];for(let i=1;i<e.length;i++)if(dayKey(e[i])===dayKey(e[i-1]))gaps.push(e[i]-e[i-1]);
- out.avgGap=gaps.length?gaps.reduce((a,b)=>a+b,0)/gaps.length:null;
- const cnt=k=>e.filter(t=>dayKey(t)===k).length;
- out.week=[];for(let i=6;i>=0;i--){const d=new Date(sod(now)-i*864e5);out.week.push({l:["D","S","T","Q","Q","S","S"][d.getDay()],n:cnt(dayKey(d))})}
- const cur=out.week.reduce((a,b)=>a+b.n,0);
- let prev=0;for(let i=13;i>=7;i--)prev+=cnt(dayKey(sod(now)-i*864e5));
- out.cur=cur;out.prev=prev;
- return out}
+function chipsInto(el,list){el.innerHTML="";list.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=hm(t);
+ b.onclick=()=>{if(confirm("Apagar o registo das "+hm(t)+"?")){S.e.splice(S.e.indexOf(t),1);persist();render()}};el.appendChild(b)})}
 
 function render(){
- const s=stats();
- $("cnt").textContent=s.today.length+" / "+S.goal;
- const pct=S.goal>0?s.today.length/S.goal:0;
- const bar=$("prog");bar.style.width=Math.min(100,pct*100)+"%";
+ IDX=index();const tk=today(),tl=IDX[tk]||[];
+ $("cnt").textContent=tl.length+" / "+S.goal;
+ const pct=S.goal>0?tl.length/S.goal:0,bar=$("prog");
+ bar.style.width=Math.min(100,pct*100)+"%";
  bar.style.background=pct>=1?"var(--bad)":pct>=.7?"var(--warn)":"var(--ok)";
- $("chips").innerHTML="";
- s.today.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=hm(t);
-  b.onclick=()=>{if(confirm("Apagar o registo das "+hm(t)+"?")){S.e.splice(S.e.indexOf(t),1);persist();render()}};$("chips").appendChild(b)});
- $("costDay").textContent=eur(s.today.length*unit());
- $("avgDay").textContent=s.avgDay!=null?s.avgDay.toFixed(1).replace(".",","):"-";
- $("avgGap").textContent=s.avgGap!=null?dur(s.avgGap):"-";
- $("total").textContent=s.total;
- $("costAll").textContent=eur(s.total*unit());
- $("unit").textContent=eur(unit());
- $("wk").textContent=s.prev>0?((s.cur-s.prev)/s.prev*100>0?"+":"")+Math.round((s.cur-s.prev)/s.prev*100)+"%":"-";
- const mx=Math.max(1,...s.week.map(w=>w.n));
- $("days").innerHTML=s.week.map(w=>`<div><i style="height:${w.n/mx*60}px"></i>${w.n}<br>${w.l}</div>`).join("");
- tick()}
+ chipsInto($("chips"),tl);
+ $("costDay").textContent=eur(cost(tl));
+ renderStats(tk);renderHist(tk);tick();
+}
 
-function tick(){const e=S.e;if(!e.length){$("since").textContent="--";return}
- const ms=Date.now()-Math.max(...e);const s=Math.floor(ms/1000);
- const h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
- $("since").textContent=h>=24?dur(ms):p2(h)+":"+p2(m)+":"+p2(sec)}
+function renderStats(tk){
+ const ks=Object.keys(IDX).sort(),first=ks[0],total=S.e.length;
+ $("total").textContent=total;
+ $("avgDay").textContent=total?f1(total/(diffD(first,tk)+1)):"-";
+ const e=[...S.e].sort((a,b)=>a-b),gaps=[];
+ for(let i=1;i<e.length;i++)if(dk(e[i])===dk(e[i-1]))gaps.push(e[i]-e[i-1]);
+ $("avgGap").textContent=gaps.length?dur(gaps.reduce((a,b)=>a+b,0)/gaps.length):"-";
+ $("costAll").textContent=eur(cost(S.e));
+ $("unit").textContent=eur(curUnit());
+ const [mn,mc]=per(tk.slice(0,7)),[yn,yc]=per(tk.slice(0,4));
+ $("mon").textContent=mn+" · "+eur(mc);$("yr").textContent=yn+" · "+eur(yc);
+ const cnt=k=>(IDX[k]||[]).length,w=[];
+ for(let i=6;i>=0;i--){const k=addD(tk,-i);w.push({n:cnt(k),l:"DSTQQSS"[new Date(U(k)).getUTCDay()]})}
+ const cur=w.reduce((a,b)=>a+b.n,0);let prev=0;for(let i=7;i<=13;i++)prev+=cnt(addD(tk,-i));
+ $("wk").textContent=prev>0?((cur-prev)>0?"+":"")+Math.round((cur-prev)/prev*100)+"%":"-";
+ const mx=Math.max(1,...w.map(x=>x.n));
+ $("days").innerHTML=w.map(x=>`<div><i style="height:${x.n/mx*60}px"></i>${x.n}<br>${x.l}</div>`).join("");
+ $("f6box").classList.toggle("hidden",!S.f6);
+ if(S.f6){
+  const n=first?diffD(first,tk):0;
+  if(n>0){let sav=0,streak=0;
+   for(let i=0;i<n;i++){const k=addD(first,i);sav+=S.base*unitAt(U(k)+12*36e5)-cost(IDX[k]||[])}
+   for(let i=n-1;i>=0;i--){if(cnt(addD(first,i))<=S.goal)streak++;else break}
+   $("sav").textContent=eur(sav);$("streak").textContent=streak}
+  else{$("sav").textContent="-";$("streak").textContent="-"}
+ }
+}
+
+/* histórico */
+const MN=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+function renderHist(tk){
+ const first=Object.keys(IDX).sort()[0];
+ $("vm").classList.toggle("on",CAL.view==="m");$("vy").classList.toggle("on",CAL.view==="y");
+ let sum=[];
+ if(CAL.view==="m"){
+  const y=CAL.y,m=CAL.m,dim=new Date(Date.UTC(y,m+1,0)).getUTCDate(),pre=y+"-"+pad(m+1);
+  $("hlabel").textContent=new Date(Date.UTC(y,m,1)).toLocaleDateString("pt-PT",{month:"long",year:"numeric",timeZone:"UTC"});
+  const lead=(new Date(Date.UTC(y,m,1)).getUTCDay()+6)%7;
+  let h="<div class='cal'>"+["S","T","Q","Q","S","S","D"].map(x=>`<span class='h'>${x}</span>`).join("")+"<span></span>".repeat(lead);
+  let tot=0,elapsed=0,ok=0;
+  for(let d=1;d<=dim;d++){
+   const k=pre+"-"+pad(d),n=(IDX[k]||[]).length,fut=k>tk;tot+=n;
+   if(!fut&&first&&k>=first){elapsed++;if(n<=S.goal)ok++}
+   const bg=n?(n<=S.goal?"rgba(61,220,151,.2)":"rgba(255,84,104,.28)"):"";
+   h+=`<button data-k="${k}" class="${fut?"fut ":""}${k===tk?"td ":""}${k===CAL.sel?"sel":""}" style="${bg?"background:"+bg:""}"><small>${d}</small><b>${n||""}</b></button>`}
+  $("hbody").innerHTML=h+"</div>";
+  const c=per(pre)[1];
+  sum=[["Total no mês",tot],["Custo",eur(c)],["Média por dia",elapsed?f1(tot/elapsed):"-"],["Dias dentro do objetivo",elapsed?ok+" de "+elapsed:"-"]];
+ }else{
+  const y=CAL.y;$("hlabel").textContent=y;
+  const rows=[];for(let m=0;m<12;m++)rows.push(per(y+"-"+pad(m+1)));
+  const mx=Math.max(1,...rows.map(r=>r[0]));let tot=0,c=0;
+  $("hbody").innerHTML=rows.map((r,m)=>{tot+=r[0];c+=r[1];return `<button class="mrow" data-m="${m}"><em>${MN[m]}</em><i style="width:${r[0]/mx*55}%"></i><span>${r[0]} · ${eur(r[1])}</span></button>`}).join("");
+  let days=0;if(first){const a=first>y+"-01-01"?first:y+"-01-01",b=tk<y+"-12-31"?tk:y+"-12-31";days=Math.max(0,diffD(a,b)+1)}
+  sum=[["Total no ano",tot],["Custo",eur(c)],["Média por dia",days?f1(tot/days):"-"],["Média por mês",tot?f1(tot/Math.max(1,rows.filter(r=>r[0]).length)):"-"]];
+ }
+ $("hsum").innerHTML=sum.map(s=>`<div class="card"><span>${s[0]}</span><b>${s[1]}</b></div>`).join("");
+ const det=$("detail");
+ if(CAL.view==="m"&&CAL.sel&&CAL.sel.startsWith(CAL.y+"-"+pad(CAL.m+1))){
+  const l=IDX[CAL.sel]||[];det.classList.remove("hidden");
+  $("dtitle").textContent=new Date(U(CAL.sel)+12*36e5).toLocaleDateString("pt-PT",{weekday:"short",day:"numeric",month:"short",timeZone:"UTC"});
+  $("dsum").textContent=l.length+" · "+eur(cost(l));chipsInto($("dchips"),l);
+ }else det.classList.add("hidden");
+}
+$("hbody").addEventListener("click",e=>{
+ const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.k){CAL.sel=b.dataset.k;renderHist(today())}
+ else if(b.dataset.m!=null){CAL.view="m";CAL.m=+b.dataset.m;CAL.sel=null;renderHist(today())}});
+$("prev").onclick=()=>nav(-1);$("next").onclick=()=>nav(1);
+function nav(d){if(CAL.view==="m"){CAL.m+=d;if(CAL.m<0){CAL.m=11;CAL.y--}if(CAL.m>11){CAL.m=0;CAL.y++}CAL.sel=null}else CAL.y+=d;renderHist(today())}
+$("vm").onclick=()=>{CAL.view="m";renderHist(today())};$("vy").onclick=()=>{CAL.view="y";renderHist(today())};
+$("dadd").onclick=()=>{const v=$("dtime").value;if(!v||!CAL.sel)return;
+ const[y,mo,d]=CAL.sel.split("-").map(Number),[hh,mm]=v.split(":").map(Number),dt=new Date(y,mo-1,d,hh,mm);
+ if(hh<S.ds)dt.setDate(dt.getDate()+1);S.e.push(dt.getTime());$("dtime").value="";persist();render()};
+
+function tick(){const e=S.e,g=$("gapbox");
+ if(!e.length){$("since").textContent="--";g.classList.add("hidden");return}
+ const ms=Date.now()-Math.max(...e),s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);
+ $("since").textContent=h>=24?dur(ms):pad(h)+":"+pad(m)+":"+pad(s%60);
+ if(S.f4){const need=S.gap*60000-ms;g.classList.remove("hidden");
+  if(need>0){const r=Math.ceil(need/1000);g.textContent="Espera mais "+pad(Math.floor(r/60))+":"+pad(r%60);g.style.color="var(--warn)"}
+  else{g.textContent="Intervalo cumprido ✓";g.style.color="var(--ok)"}}
+ else g.classList.add("hidden")}
 setInterval(tick,1000);
 
-function add(t){S.e.push(t);persist();render()}
-$("btn").onclick=()=>{if(navigator.vibrate)navigator.vibrate(30);add(Date.now())};
-$("addPast").onclick=()=>{const v=$("when").value;if(!v)return;add(new Date(v).getTime());$("when").value=""};
-$("undo").onclick=()=>{if(!S.e.length)return;const t=Math.max(...S.e);if(confirm("Apagar o último registo ("+dayKey(t)+" "+hm(t)+")?")){S.e.splice(S.e.indexOf(t),1);persist();render()}};
-[["goal",v=>Math.max(0,parseInt(v)||0)],["price",v=>Math.max(0,parseFloat(String(v).replace(",","."))||0)],["pack",v=>Math.max(1,parseInt(v)||20)]]
- .forEach(([k,f])=>$(k).addEventListener("change",()=>{S[k]=f($(k).value);persist();render()}));
-function fillCfg(){$("goal").value=S.goal;$("price").value=S.price;$("pack").value=S.pack}
+/* ações */
+$("btn").onclick=()=>{if(navigator.vibrate)navigator.vibrate(30);S.e.push(Date.now());persist();render()};
+$("addPast").onclick=()=>{const v=$("when").value;if(!v)return;S.e.push(new Date(v).getTime());$("when").value="";persist();render()};
+$("undo").onclick=()=>{if(!S.e.length)return;const t=Math.max(...S.e);if(confirm("Apagar o último registo ("+dk(t)+" "+hm(t)+")?")){S.e.splice(S.e.indexOf(t),1);persist();render()}};
 
+/* definições */
+$("goal").onchange=()=>{S.goal=Math.max(0,parseInt($("goal").value)||0);persist();render()};
+$("ds").onchange=()=>{S.ds=+$("ds").value;persist();CAL.sel=today();render()};
+$("gap").onchange=()=>{S.gap=Math.max(1,parseInt($("gap").value)||45);persist();render()};
+$("base").onchange=()=>{S.base=Math.max(1,parseInt($("base").value)||20);persist();render()};
+$("f4").onchange=()=>{S.f4=$("f4").checked;$("f4s").classList.toggle("hidden",!S.f4);persist();render()};
+$("f6").onchange=()=>{S.f6=$("f6").checked;$("f6s").classList.toggle("hidden",!S.f6);persist();render()};
+$("savePrice").onclick=()=>{
+ const p=parseFloat(String($("price").value).replace(",",".")),pk=parseInt($("pack").value);
+ if(!(p>0)||!(pk>0)){alert("Preço e cigarros por maço têm de ser maiores que zero.");return}
+ const v=$("pfrom").value,from=v?new Date(v+"T00:00").getTime():Date.now();
+ S.prices=S.prices.filter(x=>x.from!==from);S.prices.push({from,price:p,pack:pk});S.prices.sort((a,b)=>a.from-b.from);
+ $("pfrom").value="";persist();fillCfg();render()};
+$("plist").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i,x=S.prices[i];
+ if(b.dataset.a==="d"){if(S.prices.length>1&&confirm("Apagar este preço?")){S.prices.splice(i,1);persist();fillCfg();render()}}
+ else{const v=parseFloat(String(prompt("Novo preço do maço (€)",x.price)||"").replace(",","."));if(v>0){x.price=v;persist();fillCfg();render()}}});
+function fillCfg(){
+ $("goal").value=S.goal;$("ds").value=S.ds;$("gap").value=S.gap;$("base").value=S.base;
+ $("f4").checked=S.f4;$("f6").checked=S.f6;$("f4s").classList.toggle("hidden",!S.f4);$("f6s").classList.toggle("hidden",!S.f6);
+ let cur=S.prices[0];for(const x of S.prices)if(x.from<=Date.now())cur=x;
+ $("price").value=cur.price;$("pack").value=cur.pack;
+ $("plist").innerHTML=S.prices.map((x,i)=>`<div class="ph"><div>${x.from?new Date(x.from).toLocaleDateString("pt-PT"):"Desde o início"}<small>${eur(x.price)} · maço de ${x.pack} · ${eur(x.price/x.pack)} por cigarro</small></div><button data-i="${i}" data-a="e">Editar</button>${S.prices.length>1?`<button data-i="${i}" data-a="d">×</button>`:""}</div>`).join("");
+}
+
+/* separadores */
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
- ["hoje","stats","cfg"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.t))});
+ ["hoje","hist","stats","cfg"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.t))});
 
+/* backup */
 $("exp").onclick=async()=>{const data=JSON.stringify(S,null,1);
  const f=new File([data],"fumei-backup.json",{type:"application/json"});
  try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Backup Fumei"});return}}catch(e){if(e&&e.name==="AbortError")return}
  const a=document.createElement("a");a.href=URL.createObjectURL(f);a.download="fumei-backup.json";a.click()};
 $("imp").onclick=()=>$("file").click();
 $("file").onchange=async e=>{const f=e.target.files[0];if(!f)return;
- try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;if(confirm("Substituir os dados atuais pelo backup?")){S=Object.assign(S,j);persist();fillCfg();render()}}catch(x){alert("Ficheiro inválido")}};
+ try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;if(confirm("Substituir os dados atuais pelo backup?")){adopt(j);persist();fillCfg();render()}}catch(x){alert("Ficheiro inválido")}
+ e.target.value=""};
 
-load();fillCfg();render();status("guardado neste telemóvel");
-
+load();
+{const[y,m]=today().split("-").map(Number);CAL.y=y;CAL.m=m-1;CAL.sel=today()}
+fillCfg();render();$("st").textContent="guardado neste telemóvel";
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();
 if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
 </script>
