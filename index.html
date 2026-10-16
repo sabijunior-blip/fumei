@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="color-scheme" content="dark">
+<title>Fumei</title>
+<meta name="apple-mobile-web-app-title" content="Fumei">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<style>
+:root{--bg:#0b0c0f;--card:#14161b;--line:#22252d;--tx:#eceef2;--mut:#8a8f9c;--ac:#ff6b4a;--ok:#3ddc97;--warn:#ffb84a;--bad:#ff5468;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:480px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:14px;font-weight:600;color:var(--mut);letter-spacing:.08em;text-transform:uppercase;margin:0 0 18px;display:flex;justify-content:space-between}
+.since{text-align:center;margin:8px 0 20px}
+.since small{display:block;color:var(--mut);font-size:13px;margin-bottom:6px}
+.since b{font:600 44px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.02em}
+#btn{width:100%;height:120px;border:0;border-radius:28px;background:var(--ac);color:#fff;font-size:30px;font-weight:700;letter-spacing:.01em}
+#btn:active{transform:scale(.98);filter:brightness(.9)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:14px}
+.row{display:flex;justify-content:space-between;align-items:baseline}
+.row span{color:var(--mut);font-size:14px}.row b{font-size:20px}
+.bar{height:8px;background:var(--line);border-radius:8px;margin-top:12px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:8px;background:var(--ok);transition:width .3s,background .3s}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{background:var(--bg);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:8px 12px;font:500 15px ui-monospace,Menlo,monospace}
+.tabs{display:flex;gap:6px;margin:22px 0 0;background:var(--card);padding:4px;border-radius:14px;border:1px solid var(--line)}
+.tabs button{flex:1;border:0;background:none;color:var(--mut);padding:10px;border-radius:10px;font-size:14px;font-weight:600}
+.tabs button.on{background:var(--line);color:var(--tx)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.grid .card{margin:0}.grid .card span{color:var(--mut);font-size:12px;display:block}.grid .card b{font-size:22px;display:block;margin-top:4px}
+.days{display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:12px}
+.days div{flex:1;text-align:center;font-size:11px;color:var(--mut)}
+.days i{display:block;background:var(--ac);border-radius:6px 6px 2px 2px;margin-bottom:4px;min-height:2px;opacity:.85}
+label{display:block;color:var(--mut);font-size:13px;margin:14px 0 6px}
+input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:12px;font-size:16px}
+.btn2{width:100%;margin-top:12px;background:var(--line);color:var(--tx);border:0;border-radius:12px;padding:13px;font-size:15px;font-weight:600}
+.hint{color:var(--mut);font-size:12px;margin-top:10px;line-height:1.5}
+.hidden{display:none}
+#st{font-size:11px;color:var(--mut);text-transform:none;letter-spacing:0}
+</style>
+</head>
+<body>
+<main>
+<h1><span>Fumei</span><span id="st"></span></h1>
+
+<section class="since"><small>Desde o último cigarro</small><b id="since">--</b></section>
+<button id="btn">Fumei</button>
+
+<div class="tabs"><button data-t="hoje" class="on">Hoje</button><button data-t="stats">Estatísticas</button><button data-t="cfg">Definições</button></div>
+
+<section id="hoje">
+  <div class="card">
+    <div class="row"><span>Hoje</span><b id="cnt">0 / 0</b></div>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="chips" id="chips"></div>
+    <div class="hint">Toca numa hora para a apagar.</div>
+  </div>
+  <div class="card"><div class="row"><span>Custo hoje</span><b id="costDay">0,00 €</b></div></div>
+</section>
+
+<section id="stats" class="hidden">
+  <div class="grid">
+    <div class="card"><span>Média diária</span><b id="avgDay">-</b></div>
+    <div class="card"><span>Tempo médio entre cigarros</span><b id="avgGap">-</b></div>
+    <div class="card"><span>Total fumados</span><b id="total">0</b></div>
+    <div class="card"><span>Custo total</span><b id="costAll">0,00 €</b></div>
+    <div class="card"><span>Custo por cigarro</span><b id="unit">-</b></div>
+    <div class="card"><span>Esta semana vs anterior</span><b id="wk">-</b></div>
+  </div>
+  <div class="card"><div class="row"><span>Últimos 7 dias</span></div><div class="days" id="days"></div></div>
+</section>
+
+<section id="cfg" class="hidden">
+  <div class="card">
+    <label>Objetivo diário (cigarros)</label><input id="goal" type="number" min="0" inputmode="numeric">
+    <label>Preço do maço (€)</label><input id="price" type="number" min="0" step="0.01" inputmode="decimal">
+    <label>Cigarros por maço</label><input id="pack" type="number" min="1" inputmode="numeric">
+    <div class="hint">Se o preço mudar, o novo valor aplica-se a todos os registos (o custo é recalculado com o preço atual).</div>
+  </div>
+  <div class="card">
+    <label>Adicionar cigarro com outra hora</label><input id="when" type="datetime-local">
+    <button class="btn2" id="addPast">Adicionar</button>
+    <button class="btn2" id="undo">Apagar o último registo</button>
+  </div>
+  <div class="card">
+    <button class="btn2" id="exp" style="margin-top:0">Exportar backup</button>
+    <button class="btn2" id="imp">Importar backup</button>
+    <input type="file" id="file" accept=".json" class="hidden">
+  </div>
+</section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const KEY="fumei_v1";
+let S={e:[],goal:15,price:5.8,pack:20,u:0};
+
+const eur=n=>n.toLocaleString("pt-PT",{minimumFractionDigits:2,maximumFractionDigits:2})+" €";
+const p2=n=>String(n).padStart(2,"0");
+const hm=t=>{const d=new Date(t);return p2(d.getHours())+":"+p2(d.getMinutes())};
+const dayKey=t=>{const d=new Date(t);return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())};
+const sod=t=>{const d=new Date(t);d.setHours(0,0,0,0);return d.getTime()};
+const unit=()=>S.price/S.pack;
+function dur(ms){ms=Math.max(0,ms);const m=Math.floor(ms/60000),h=Math.floor(m/60),d=Math.floor(h/24);
+ if(d>0)return d+"d "+(h%24)+"h";if(h>0)return h+"h "+p2(m%60)+"m";return m+" min"}
+
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)S=Object.assign(S,r)}catch(e){}}
+function persist(){S.u=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S));status("guardado neste telemóvel")}catch(e){status("erro ao guardar")}}
+function status(t){$("st").textContent=t}
+
+function stats(){
+ const e=[...S.e].sort((a,b)=>a-b);const now=Date.now();
+ const today=e.filter(t=>sod(t)===sod(now));
+ const out={today};
+ out.total=e.length;
+ if(e.length){const days=Math.round((sod(now)-sod(e[0]))/864e5)+1;out.avgDay=e.length/days}
+ const gaps=[];for(let i=1;i<e.length;i++)if(dayKey(e[i])===dayKey(e[i-1]))gaps.push(e[i]-e[i-1]);
+ out.avgGap=gaps.length?gaps.reduce((a,b)=>a+b,0)/gaps.length:null;
+ const cnt=k=>e.filter(t=>dayKey(t)===k).length;
+ out.week=[];for(let i=6;i>=0;i--){const d=new Date(sod(now)-i*864e5);out.week.push({l:["D","S","T","Q","Q","S","S"][d.getDay()],n:cnt(dayKey(d))})}
+ const cur=out.week.reduce((a,b)=>a+b.n,0);
+ let prev=0;for(let i=13;i>=7;i--)prev+=cnt(dayKey(sod(now)-i*864e5));
+ out.cur=cur;out.prev=prev;
+ return out}
+
+function render(){
+ const s=stats();
+ $("cnt").textContent=s.today.length+" / "+S.goal;
+ const pct=S.goal>0?s.today.length/S.goal:0;
+ const bar=$("prog");bar.style.width=Math.min(100,pct*100)+"%";
+ bar.style.background=pct>=1?"var(--bad)":pct>=.7?"var(--warn)":"var(--ok)";
+ $("chips").innerHTML="";
+ s.today.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=hm(t);
+  b.onclick=()=>{if(confirm("Apagar o registo das "+hm(t)+"?")){S.e.splice(S.e.indexOf(t),1);persist();render()}};$("chips").appendChild(b)});
+ $("costDay").textContent=eur(s.today.length*unit());
+ $("avgDay").textContent=s.avgDay!=null?s.avgDay.toFixed(1).replace(".",","):"-";
+ $("avgGap").textContent=s.avgGap!=null?dur(s.avgGap):"-";
+ $("total").textContent=s.total;
+ $("costAll").textContent=eur(s.total*unit());
+ $("unit").textContent=eur(unit());
+ $("wk").textContent=s.prev>0?((s.cur-s.prev)/s.prev*100>0?"+":"")+Math.round((s.cur-s.prev)/s.prev*100)+"%":"-";
+ const mx=Math.max(1,...s.week.map(w=>w.n));
+ $("days").innerHTML=s.week.map(w=>`<div><i style="height:${w.n/mx*60}px"></i>${w.n}<br>${w.l}</div>`).join("");
+ tick()}
+
+function tick(){const e=S.e;if(!e.length){$("since").textContent="--";return}
+ const ms=Date.now()-Math.max(...e);const s=Math.floor(ms/1000);
+ const h=Math.floor(s/3600),m=Math.floor(s%3600/60),sec=s%60;
+ $("since").textContent=h>=24?dur(ms):p2(h)+":"+p2(m)+":"+p2(sec)}
+setInterval(tick,1000);
+
+function add(t){S.e.push(t);persist();render()}
+$("btn").onclick=()=>{if(navigator.vibrate)navigator.vibrate(30);add(Date.now())};
+$("addPast").onclick=()=>{const v=$("when").value;if(!v)return;add(new Date(v).getTime());$("when").value=""};
+$("undo").onclick=()=>{if(!S.e.length)return;const t=Math.max(...S.e);if(confirm("Apagar o último registo ("+dayKey(t)+" "+hm(t)+")?")){S.e.splice(S.e.indexOf(t),1);persist();render()}};
+[["goal",v=>Math.max(0,parseInt(v)||0)],["price",v=>Math.max(0,parseFloat(String(v).replace(",","."))||0)],["pack",v=>Math.max(1,parseInt(v)||20)]]
+ .forEach(([k,f])=>$(k).addEventListener("change",()=>{S[k]=f($(k).value);persist();render()}));
+function fillCfg(){$("goal").value=S.goal;$("price").value=S.price;$("pack").value=S.pack}
+
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
+ ["hoje","stats","cfg"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.t))});
+
+$("exp").onclick=async()=>{const data=JSON.stringify(S,null,1);
+ const f=new File([data],"fumei-backup.json",{type:"application/json"});
+ try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Backup Fumei"});return}}catch(e){if(e&&e.name==="AbortError")return}
+ const a=document.createElement("a");a.href=URL.createObjectURL(f);a.download="fumei-backup.json";a.click()};
+$("imp").onclick=()=>$("file").click();
+$("file").onchange=async e=>{const f=e.target.files[0];if(!f)return;
+ try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;if(confirm("Substituir os dados atuais pelo backup?")){S=Object.assign(S,j);persist();fillCfg();render()}}catch(x){alert("Ficheiro inválido")}};
+
+load();fillCfg();render();status("guardado neste telemóvel");
+
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();
+if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body>
+</html>
