@@ -55,6 +55,16 @@ h1{font-size:14px;font-weight:600;color:var(--mut);letter-spacing:.08em;text-tra
 .sw{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .sw button{aspect-ratio:1;border-radius:50%;border:3px solid var(--card);outline:2px solid transparent;padding:0}
 .sw button.on{outline-color:var(--tx)}
+.mi{display:flex;justify-content:space-between;align-items:center;width:100%;background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:16px;padding:15px 16px;margin-top:10px;font-size:16px;font-weight:600;text-align:left;font-family:inherit}
+.mi small{display:block;color:var(--mut);font-size:12px;font-weight:400;margin-top:3px}.mi em{font-style:normal;color:var(--mut);font-size:22px}
+.back{background:none;border:0;color:var(--ac);font-size:15px;font-weight:600;padding:4px 0;margin-top:14px;font-family:inherit}
+#ctitle{font-size:20px;margin:8px 0 0}
+#lock{display:none;position:fixed;inset:0;z-index:50;background:var(--bg);flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:16px}
+.locked #lock{display:flex}.locked main{visibility:hidden}
+.dots{display:flex;gap:14px}.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--mut)}.dots i.on{background:var(--ac);border-color:var(--ac)}
+.pad{display:grid;grid-template-columns:repeat(3,74px);gap:14px;margin:6px 0}
+.pad button{height:74px;border-radius:50%;border:0;background:var(--card);color:var(--tx);font-size:28px;font-weight:500;font-family:inherit}
+.pad button:active{background:var(--line)}.pad #lbio{font-size:13px}.pad .blank{visibility:hidden}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:14px}
 .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .row span{color:var(--mut);font-size:14px}.row b{font-size:20px}
@@ -104,6 +114,20 @@ input[type=checkbox]{width:24px;height:24px;padding:0;accent-color:var(--ac);fle
 </style>
 </head>
 <body>
+<script>try{if(localStorage.getItem("fumei_lock"))document.documentElement.classList.add("locked")}catch(e){}</script>
+<div id="lock">
+  <b id="ltitle" style="font-size:18px">Introduz o PIN</b>
+  <div class="dots" id="ldots"><i></i><i></i><i></i><i></i></div>
+  <div id="lmsg" class="hint" style="min-height:18px;margin:0;color:var(--bad)"></div>
+  <div class="pad" id="lpad">
+    <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+    <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+    <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+    <button data-k="bio" id="lbio" class="blank">Face ID</button><button data-k="0">0</button><button data-k="del" aria-label="Apagar">⌫</button>
+  </div>
+  <button class="back hidden" id="lcancel" style="margin:0">Cancelar</button>
+  <button class="back hidden" id="lforgot" style="margin:0;color:var(--mut);font-size:13px">Esqueci o PIN</button>
+</div>
 <main>
 <h1><span>Fumei</span><span id="st"></span></h1>
 
@@ -161,17 +185,31 @@ input[type=checkbox]{width:24px;height:24px;padding:0;accent-color:var(--ac);fle
 </section>
 
 <section id="cfg" class="hidden">
+  <div id="cmenu">
+    <button class="mi" data-p="look"><span>Aspeto<small>Layout e cores</small></span><em>›</em></button>
+    <button class="mi" data-p="goal"><span>Objetivos<small>Objetivo diário e início do dia</small></span><em>›</em></button>
+    <button class="mi" data-p="price"><span>Preço do maço<small>Preço atual e histórico</small></span><em>›</em></button>
+    <button class="mi" data-p="feat"><span>Funções opcionais<small>Intervalo mínimo e poupança</small></span><em>›</em></button>
+    <button class="mi" data-p="recs"><span>Registos<small>Adicionar com outra hora, apagar</small></span><em>›</em></button>
+    <button class="mi" data-p="sec"><span>Segurança<small id="lkst">Desativado</small></span><em>›</em></button>
+    <button class="mi" data-p="bak"><span>Backup<small>Exportar e importar</small></span><em>›</em></button>
+  </div>
+  <div id="cpage" class="hidden">
+    <button class="back" id="cback">‹ Definições</button><h2 id="ctitle"></h2>
+<div class="csub hidden" id="p-look">
   <div class="card">
     <label>Layout do ecrã principal</label><div class="opts" id="lays"></div>
     <label>Cor</label><div class="sw" id="sws"></div><div class="hint" id="swn"></div>
-  </div>
+  </div></div>
+<div class="csub hidden" id="p-goal">
   <div class="card">
     <label>Objetivo diário (cigarros)</label><input id="goal" type="number" min="0" inputmode="numeric">
     <label>O dia começa às</label>
     <select id="ds"><option value="0">00:00 (meia-noite)</option><option value="1">01:00</option><option value="2">02:00</option><option value="3">03:00</option><option value="4">04:00</option><option value="5">05:00</option><option value="6">06:00</option></select>
     <div class="hint">Com 04:00, um cigarro às 00:30 conta ainda para o dia anterior.</div>
   </div>
-
+</div>
+<div class="csub hidden" id="p-price">
   <div class="card">
     <label>Preço do maço (€)</label><input id="price" type="number" min="0" step="0.01" inputmode="decimal">
     <label>Cigarros por maço</label><input id="pack" type="number" min="1" inputmode="numeric">
@@ -180,7 +218,8 @@ input[type=checkbox]{width:24px;height:24px;padding:0;accent-color:var(--ac);fle
     <div class="hint">O preço novo só vale daí para a frente: os cigarros anteriores mantêm o preço antigo.</div>
     <div id="plist" style="margin-top:12px"></div>
   </div>
-
+</div>
+<div class="csub hidden" id="p-feat">
   <div class="card">
     <div class="tog"><span>Intervalo mínimo entre cigarros</span><input type="checkbox" id="f4"></div>
     <div class="sub hidden" id="f4s"><label>Minutos de espera</label><input id="gap" type="number" min="1" inputmode="numeric"></div>
@@ -188,20 +227,33 @@ input[type=checkbox]{width:24px;height:24px;padding:0;accent-color:var(--ac);fle
     <div class="sub hidden" id="f6s"><label>Quantos fumavas por dia antes de reduzir</label><input id="base" type="number" min="1" inputmode="numeric">
     <div class="hint">A poupança compara o que gastaste com o que gastarias a esse ritmo, nos dias já completos.</div></div>
   </div>
-
+</div>
+<div class="csub hidden" id="p-recs">
   <div class="card">
     <label>Adicionar cigarro com outra hora</label><input id="when" type="datetime-local">
     <button class="btn2" id="addPast">Adicionar</button>
     <button class="btn2" id="undo">Apagar o último registo</button>
+  </div>  <div class="card">
+    <button class="btn2 danger" id="wipe" style="margin-top:0">Apagar todos os registos</button>
+    <div class="hint">Apaga todos os cigarros registados. O objetivo, os preços e as opções mantêm-se. Pede duas confirmações. Faz antes um backup se quiseres guardar uma cópia.</div>
   </div>
+</div>
+<div class="csub hidden" id="p-sec">
+  <div class="card">
+    <div class="tog"><span>Pedir PIN ao abrir</span><input type="checkbox" id="fLock"></div>
+    <div class="sub hidden" id="lkopts">
+      <div class="tog" style="margin-top:6px"><span>Usar Face ID</span><input type="checkbox" id="fBio"></div>
+      <button class="btn2" id="chPin">Alterar PIN</button>
+    </div>
+    <div class="hint">O bloqueio impede que outras pessoas abram a app, mas não encripta os dados guardados no telemóvel. Volta a pedir o PIN depois de a app estar 30 segundos em segundo plano. Se esqueceres o PIN, o ecrã de bloqueio tem "Esqueci o PIN", que apaga todos os dados. Faz backups. O Face ID é uma comodidade e pode não funcionar em todas as versões do iOS, e nesse caso usa o PIN. Ao ativá-lo, o iOS guarda uma chave em Palavras-passe, para "github.io".</div>
+  </div>
+</div>
+<div class="csub hidden" id="p-bak">
   <div class="card">
     <button class="btn2" id="exp" style="margin-top:0">Exportar backup</button>
     <button class="btn2" id="imp">Importar backup</button>
     <input type="file" id="file" accept=".json" class="hidden">
-  </div>
-  <div class="card">
-    <button class="btn2 danger" id="wipe" style="margin-top:0">Apagar todos os registos</button>
-    <div class="hint">Apaga todos os cigarros registados. O objetivo, os preços e as opções mantêm-se. Pede duas confirmações. Faz antes um backup se quiseres guardar uma cópia.</div>
+  </div></div>
   </div>
 </section>
 </main>
@@ -449,8 +501,16 @@ $("wipe").onclick=()=>{
  if(v===null||v.trim()!=="APAGAR"){alert("Cancelado. Nada foi apagado.");return}
  S.e=[];persist();CAL.sel=today();render();alert("Todos os registos foram apagados.")};
 
+/* submenus das definições */
+const CT={look:"Aspeto",goal:"Objetivos",price:"Preço do maço",feat:"Funções opcionais",recs:"Registos",sec:"Segurança",bak:"Backup"};
+function cfgOpen(p){$("cmenu").classList.add("hidden");$("cpage").classList.remove("hidden");document.querySelectorAll(".csub").forEach(x=>x.classList.toggle("hidden",x.id!=="p-"+p));$("ctitle").textContent=CT[p];if(window.scrollTo)window.scrollTo(0,0)}
+function cfgBack(){$("cmenu").classList.remove("hidden");$("cpage").classList.add("hidden")}
+$("cmenu").addEventListener("click",e=>{const b=e.target.closest("button");if(b)cfgOpen(b.dataset.p)});
+$("cback").onclick=cfgBack;
+
 /* separadores */
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
+ if(b.dataset.t==="cfg")cfgBack();
  document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));
  ["hoje","hist","stats","cfg"].forEach(id=>$(id).classList.toggle("hidden",id!==b.dataset.t))});
 
@@ -464,9 +524,71 @@ $("file").onchange=async e=>{const f=e.target.files[0];if(!f)return;
  try{const j=JSON.parse(await f.text());if(!Array.isArray(j.e))throw 0;if(confirm("Substituir os dados atuais pelo backup?")){adopt(j);persist();applyTheme();renderHero();fillLook();syncPanels();fillCfg();render()}}catch(x){alert("Ficheiro inválido")}
  e.target.value=""};
 
+/* bloqueio: PIN (e Face ID via passkey). Fica fora do backup */
+const LKEY="fumei_lock";let LK=null,LM={mode:null,buf:"",tmp:"",cb:null,fails:0,until:0},hiddenAt=0;
+try{LK=JSON.parse(localStorage.getItem(LKEY))}catch(e){}
+if(!LK||!LK.h)LK=null;
+if(!LK)document.documentElement.classList.remove("locked");
+const saveLK=()=>{try{LK?localStorage.setItem(LKEY,JSON.stringify(LK)):localStorage.removeItem(LKEY)}catch(e){}};
+async function hash(pin,salt){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(salt+":"+pin));return Array.from(new Uint8Array(d)).map(x=>x.toString(16).padStart(2,"0")).join("")}
+const b64=u=>btoa(String.fromCharCode(...new Uint8Array(u))),unb64=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
+function paintDots(){[...$("ldots").children].forEach((d,i)=>d.classList.toggle("on",i<LM.buf.length))}
+function lmsg(t){$("lmsg").textContent=t;setTimeout(()=>{if($("lmsg").textContent===t)$("lmsg").textContent=""},2500)}
+function openLock(mode,title,cb,cancel){
+ LM.mode=mode;LM.buf="";LM.tmp="";LM.cb=cb;$("ltitle").textContent=title;$("lmsg").textContent="";
+ $("lcancel").classList.toggle("hidden",!cancel);$("lforgot").classList.toggle("hidden",mode!=="unlock");
+ $("lbio").classList.toggle("blank",!(mode==="unlock"&&LK&&LK.c));
+ paintDots();document.documentElement.classList.add("locked")}
+function closeLock(){LM.mode=null;LM.buf="";document.documentElement.classList.remove("locked")}
+async function pinDone(pin){
+ const m=LM.mode;
+ if(m==="unlock"||m==="verify"){
+  if(await hash(pin,LK.s)===LK.h){LM.fails=0;const cb=LM.cb;closeLock();if(cb)cb()}
+  else{LM.fails++;if(LM.fails>=5){LM.fails=0;LM.until=Date.now()+30000;lmsg("Demasiadas tentativas. Espera 30 s.")}else lmsg("PIN errado")}
+ }else if(m==="new1"){LM.tmp=pin;LM.mode="new2";$("ltitle").textContent="Confirma o PIN"}
+ else if(m==="new2"){
+  if(pin===LM.tmp){const s=Array.from(crypto.getRandomValues(new Uint8Array(8))).join("");LK={s,h:await hash(pin,s),c:(LK&&LK.c)||null};saveLK();const cb=LM.cb;closeLock();if(cb)cb()}
+  else{LM.mode="new1";$("ltitle").textContent="Os PIN não coincidem. Escolhe de novo"}
+ }
+ paintDots()}
+async function bioUnlock(){
+ try{await navigator.credentials.get({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),allowCredentials:[{type:"public-key",id:unb64(LK.c)}],userVerification:"required",timeout:60000}});const cb=LM.cb;closeLock();if(cb)cb()}
+ catch(e){lmsg("Face ID falhou. Usa o PIN.")}}
+async function bioEnable(){
+ try{const c=await navigator.credentials.create({publicKey:{challenge:crypto.getRandomValues(new Uint8Array(32)),rp:{name:"Fumei"},user:{id:crypto.getRandomValues(new Uint8Array(16)),name:"fumei",displayName:"Fumei"},pubKeyCredParams:[{type:"public-key",alg:-7},{type:"public-key",alg:-257}],authenticatorSelection:{authenticatorAttachment:"platform",userVerification:"required"},timeout:60000}});LK.c=b64(c.rawId);saveLK()}
+ catch(e){alert("Não foi possível ativar o Face ID neste dispositivo ou neste modo. Podes continuar a usar o PIN.")}}
+$("lpad").addEventListener("click",async e=>{
+ const b=e.target.closest("button");if(!b||!LM.mode)return;
+ if(Date.now()<LM.until){lmsg("Espera "+Math.ceil((LM.until-Date.now())/1000)+" s");return}
+ const k=b.dataset.k;
+ if(k==="del"){LM.buf=LM.buf.slice(0,-1);paintDots();return}
+ if(k==="bio"){if(LM.mode==="unlock"&&LK&&LK.c)bioUnlock();return}
+ if(LM.buf.length>=4)return;
+ LM.buf+=k;paintDots();
+ if(LM.buf.length===4){const p=LM.buf;LM.buf="";await pinDone(p)}});
+$("lcancel").onclick=()=>{closeLock();fillLock()};
+$("lforgot").onclick=()=>{
+ if(!confirm("Isto apaga TODOS os registos e definições deste telemóvel e remove o bloqueio. Queres continuar?"))return;
+ const v=prompt("Última confirmação. Escreve APAGAR em maiúsculas.");
+ if(v&&v.trim()==="APAGAR"){try{localStorage.removeItem(KEY);localStorage.removeItem(LKEY)}catch(e){}location.reload()}};
+function fillLock(){
+ $("fLock").checked=!!LK;$("lkopts").classList.toggle("hidden",!LK);$("fBio").checked=!!(LK&&LK.c);
+ $("lkst").textContent=LK?(LK.c?"PIN e Face ID ativos":"PIN ativo"):"Desativado"}
+$("fLock").onchange=()=>{const on=$("fLock").checked;$("fLock").checked=!on;
+ if(on)openLock("new1","Escolhe um PIN de 4 dígitos",fillLock,true);
+ else openLock("verify","Introduz o PIN para desativar",()=>{LK=null;saveLK();fillLock()},true)};
+$("fBio").onchange=async()=>{const on=$("fBio").checked;$("fBio").checked=!on;
+ if(on){await bioEnable()}else{LK.c=null;saveLK();alert("Face ID desativado. Para remover também a chave guardada, apaga a entrada github.io em Definições do iPhone, Palavras-passe.")}
+ fillLock()};
+$("chPin").onclick=()=>openLock("verify","PIN atual",()=>openLock("new1","Escolhe o novo PIN",fillLock,true),true);
+document.addEventListener("visibilitychange",()=>{
+ if(document.hidden){hiddenAt=Date.now();return}
+ if(LK&&hiddenAt&&Date.now()-hiddenAt>30000&&!document.documentElement.classList.contains("locked"))openLock("unlock","Introduz o PIN",null,false)});
+
 load();
 {const[y,m]=today().split("-").map(Number);CAL.y=y;CAL.m=m-1;CAL.sel=today()}
 applyTheme();renderHero();fillLook();syncPanels();fillCfg();render();$("st").textContent="guardado neste telemóvel";
+fillLock();if(LK)openLock("unlock","Introduz o PIN",null,false);
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();
 if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
 </script>
